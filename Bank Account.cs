@@ -9,15 +9,16 @@ namespace Bank_Account
         // Create values
         private string FullName, Address;
         private int BalancePennies, AccountNumber;
-
+        private static int AccountsCreated = 0;
 
         // Set up
-        public Bank_Account(string name, string address, int num, int pennies)
+        public Bank_Account(string name, string address, int pennies)
         {
             FullName = name;
             FullName = address;
-            AccountNumber = num;
             BalancePennies = pennies;
+            AccountNumber = AccountsCreated;
+            AccountsCreated++;
         }
 
 
@@ -27,6 +28,8 @@ namespace Bank_Account
             FullName = "";
             AccountNumber = 0;
             BalancePennies = 0;
+            AccountNumber = AccountsCreated;
+            AccountsCreated++;
         }
 
         

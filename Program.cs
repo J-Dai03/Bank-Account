@@ -6,7 +6,11 @@ namespace Bank_Account
     {
         static void Main(string[] args)
         {
+            //Declare variables
             bool ContinueRunning = true;
+            int NumberOfAccounts;
+
+            
             //Create references
             Bank_Account[] BA = new Bank_Account[2];
 
@@ -14,6 +18,11 @@ namespace Bank_Account
             BA[0] = new Bank_Account("Adam", "Somewhere", 0, 0);
             BA[1] = new Bank_Account("Bill", "Nowhere", 1, 6000);
             BA[2] = new Bank_Account("Chip", "Here", 2, 200000);
+
+            // Number of Accounts
+            // Static variables must be called with the class name, not an object name
+            NumberOfAccounts = Bank_Account.AccountsCreated();
+            Console.WriteLine(Convert.ToString(NumberOfAccounts));
 
             while(true)
             {
@@ -23,11 +32,11 @@ namespace Bank_Account
                 {
                     ContinueRunning = MainMenu(Current_user);
                 }
-                while (ContinueRunning == true);
+                while (ContinueRunning);
             }
         }
 
-        static bool MainMenu(int AccountNumber)
+        static bool MainMenu(int AccountNumber, Bank_Account[] B_A)
         {
             Console.WriteLine("");
             Console.WriteLine("Choose an option:");
@@ -38,19 +47,19 @@ namespace Bank_Account
             switch (Console.ReadLine())
             {
                 case "1":
-                    BA[AccountNumber].displayBalance();
+                    B_A[AccountNumber].displayBalance();
                     return true;
                 case "2":
-                    BA[AccountNumber].displayBalance();
+                    B_A[AccountNumber].displayBalance();
                     Console.WriteLine("How much would you like to depoit(in pennies)?");
                     Console.WriteLine("Enter zero (0) to cancel.");
-                    BA[AccountNumber].deposit(Console.ReadLine);
+                    B_A[AccountNumber].deposit(Console.ReadLine);
                     return true;
                 case "3":
-                    BA[AccountNumber].displayBalance();
+                    B_A[AccountNumber].displayBalance();
                     Console.WriteLine("How much would you like to withdraw(in pennies)?");
                     Console.WriteLine("Enter zero (0) to cancel.");
-                    BA[AccountNumber].withdraw(Console.ReadLine);
+                    B_A[AccountNumber].withdraw(Console.ReadLine);
                     return true;
                 default:
                     return false;
